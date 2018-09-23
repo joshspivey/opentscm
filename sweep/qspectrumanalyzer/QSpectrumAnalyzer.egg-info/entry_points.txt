@@ -1,0 +1,3 @@
+[gui_scripts]
+qspectrumanalyzer = qspectrumanalyzer.__main__:main
+

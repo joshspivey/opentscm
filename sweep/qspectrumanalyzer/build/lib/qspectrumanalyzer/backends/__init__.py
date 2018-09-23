@@ -2,7 +2,7 @@ import os, threading, shlex
 
 from Qt import QtCore
 
-from qspectrumanalyzer import subproc
+from qspectrumanalyzer import subprocess
 
 
 class BaseInfo:
