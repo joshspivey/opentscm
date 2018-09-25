@@ -7,7 +7,7 @@ https://web.wpi.edu/Pubs/E-project/Available/E-project-011518-172228/unrestricte
 
 Make sure you install gr-fosphor, gr-sdr
 
-You have to add you full duplex device address in the source and the sink
+You have to add your full duplex device address in the source and the sink
 
 ##### todo: 
 
