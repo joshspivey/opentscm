@@ -15,6 +15,20 @@ todo:
 4. Needs cross platform X11 references to work on mac and windows. Right now will work on linux in the cli or you need gnu radio companion installed and run the GRC.
 
 
+Howto find the device address
+
+> SoapySDRUtil --find
+> ######################################################
+> ## Soapy SDR -- the SDR abstraction library
+> ######################################################
+
+> Found device 0
+>   addr = 241:1204
+>   driver = lime
+>   media = USB
+>   module = STREAM
+>   name = USB 3.0 (Stream)
+
 ####################################################################
 
 DIY hardware version
