@@ -10,6 +10,7 @@ todo:
 2. Make PCB design for antenna "Needs a PCB log antenna that goes from 10hz to 6ghz"
 3. Needs a script to show it detected something right now it completes the loop in the histogram
 4. Needs requirements.txt
+5. Needs cross platform X11 references to work on mac and windows. Right now will work on linux in the cli or you need gnu radio companion installed and run the GRC.
 
 
 ####################################################################
