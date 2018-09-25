@@ -1,4 +1,4 @@
-#SDR Non Linear Junction Detector 
+# SDR Non Linear Junction Detector 
 
 Needs full duplex SDR that goes to at least 6ghz
 The SDR GNU radio version is modeled after the nljd PDF file
@@ -9,7 +9,7 @@ Make sure you install gr-fosphor, gr-sdr
 
 You have to add you full duplex device address in the source and the sink
 
-#####todo: 
+##### todo: 
 
 1. Make PCB design for antenna "Needs a PCB log antenna that goes from 10hz to 6ghz"
 2. Needs a script to show it detected something right now it completes the loop in the histogram
@@ -17,7 +17,7 @@ You have to add you full duplex device address in the source and the sink
 4. Needs cross platform X11 references to work on mac and windows. Right now will work on linux in the cli or you need gnu radio companion installed and run the GRC.
 
 
-#####Howto find the device address:
+##### Howto find the device address:
 ```
 > SoapySDRUtil --find
 > ######################################################
@@ -35,6 +35,6 @@ You have to add you full duplex device address in the source and the sink
 
 ####################################################################
 
-#DIY Hardware Non Linear Junction Detector
+# DIY Hardware Non Linear Junction Detector
 
 http://67.225.133.110/~gbpprorg/mil/non/index.html
