@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 ##################################################
 # GNU Radio Python Flow Graph
-# Title: Top Block
-# Generated: Mon Sep 24 21:21:32 2018
+# Title: Non Linear Junction Detector
+# Generated: Mon Sep 24 22:00:10 2018
 ##################################################
 
 if __name__ == '__main__':
@@ -35,10 +35,10 @@ import osmosdr
 import wx
 
 
-class top_block(grc_wxgui.top_block_gui):
+class non_linear_junction_detector(grc_wxgui.top_block_gui):
 
     def __init__(self):
-        grc_wxgui.top_block_gui.__init__(self, title="Top Block")
+        grc_wxgui.top_block_gui.__init__(self, title="Non Linear Junction Detector")
 
         ##################################################
         # Variables
@@ -210,7 +210,7 @@ class top_block(grc_wxgui.top_block_gui):
         self.wxgui_fftsink2_0.set_sample_rate(self.audio_rate)
 
 
-def main(top_block_cls=top_block, options=None):
+def main(top_block_cls=non_linear_junction_detector, options=None):
 
     tb = top_block_cls()
     tb.Start(True)
