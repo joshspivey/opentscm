@@ -6,11 +6,11 @@ https://web.wpi.edu/Pubs/E-project/Available/E-project-011518-172228/unrestricte
 Make sure you install gr-fosphor 
 
 todo: 
-	1. Intergrate with lime sdr and soapy "Note needs lime expansion board for 10ghz"
-	2. Make PCB design for antenna
-	3. Needs a script to show it detected something right now it completes the loop in the histogram
-	4. Needs requirements.txt
-	
+1. Intergrate with lime sdr and soapy "Note needs lime expansion board for 10ghz"
+2. Make PCB design for antenna "Needs a PCB log antenna that goes from 10hz to 6ghz"
+3. Needs a script to show it detected something right now it completes the loop in the histogram
+4. Needs requirements.txt
+
 
 ####################################################################
 
