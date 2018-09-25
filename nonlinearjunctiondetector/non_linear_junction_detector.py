@@ -3,7 +3,7 @@
 ##################################################
 # GNU Radio Python Flow Graph
 # Title: Non Linear Junction Detector
-# Generated: Mon Sep 24 22:00:10 2018
+# Generated: Mon Sep 24 23:48:23 2018
 ##################################################
 
 if __name__ == '__main__':
@@ -23,6 +23,7 @@ from gnuradio import eng_notation
 from gnuradio import filter
 from gnuradio import fosphor
 from gnuradio import gr
+from gnuradio import sdr
 from gnuradio import wxgui
 from gnuradio.eng_option import eng_option
 from gnuradio.fft import window
@@ -31,7 +32,7 @@ from gnuradio.wxgui import fftsink2
 from gnuradio.wxgui import forms
 from grc_gnuradio import wxgui as grc_wxgui
 from optparse import OptionParser
-import osmosdr
+import time
 import wx
 
 
@@ -100,35 +101,21 @@ class non_linear_junction_detector(grc_wxgui.top_block_gui):
         	false=0,
         )
         self.Add(self._variable_check_box_0_check_box)
+        self.sdr_source_0 = sdr.source({}, "CF32", ([0]), {})
+        self.sdr_source_0.set_samp_rate(samp_rate)
+        self.sdr_source_0.set_center_freq(999000000, 0)
+        self.sdr_source_0.set_gain(10, 0)
+        self.sdr_sink_0 = sdr.sink({}, "CF32", ([0]), {})
+        self.sdr_sink_0.set_samp_rate(samp_rate)
+        self.sdr_sink_0.set_center_freq(5875000000, 0)
+        self.sdr_sink_0.set_gain(0, 0)
+        self.sdr_sink_0.set_antenna('TX/RX', 0)
         self.rational_resampler_xxx_0 = filter.rational_resampler_fff(
                 interpolation=48,
                 decimation=40,
                 taps=None,
                 fractional_bw=None,
         )
-        self.osmosdr_source_0 = osmosdr.source( args="numchan=" + str(1) + " " + '' )
-        self.osmosdr_source_0.set_sample_rate(samp_rate)
-        self.osmosdr_source_0.set_center_freq(999000000, 0)
-        self.osmosdr_source_0.set_freq_corr(0, 0)
-        self.osmosdr_source_0.set_dc_offset_mode(0, 0)
-        self.osmosdr_source_0.set_iq_balance_mode(0, 0)
-        self.osmosdr_source_0.set_gain_mode(False, 0)
-        self.osmosdr_source_0.set_gain(10, 0)
-        self.osmosdr_source_0.set_if_gain(20, 0)
-        self.osmosdr_source_0.set_bb_gain(20, 0)
-        self.osmosdr_source_0.set_antenna('', 0)
-        self.osmosdr_source_0.set_bandwidth(0, 0)
-          
-        self.osmosdr_sink_0 = osmosdr.sink( args="numchan=" + str(1) + " " + '' )
-        self.osmosdr_sink_0.set_sample_rate(samp_rate)
-        self.osmosdr_sink_0.set_center_freq(5875000000, 0)
-        self.osmosdr_sink_0.set_freq_corr(0, 0)
-        self.osmosdr_sink_0.set_gain(10, 0)
-        self.osmosdr_sink_0.set_if_gain(20, 0)
-        self.osmosdr_sink_0.set_bb_gain(20, 0)
-        self.osmosdr_sink_0.set_antenna('TX/RX', 0)
-        self.osmosdr_sink_0.set_bandwidth(0, 0)
-          
         self.low_pass_filter_0 = filter.fir_filter_fff(100, firdes.low_pass(
         	3, samp_rate, 10000, 5000, firdes.WIN_HAMMING, 6.76))
         self.high_pass_filter_0 = filter.fir_filter_fff(1, firdes.high_pass(
@@ -158,16 +145,16 @@ class non_linear_junction_detector(grc_wxgui.top_block_gui):
         self.connect((self.blocks_abs_xx_0, 0), (self.high_pass_filter_0, 0))    
         self.connect((self.blocks_complex_to_float_0, 0), (self.blocks_multiply_xx_0, 0))    
         self.connect((self.blocks_complex_to_float_0, 1), (self.blocks_null_sink_0, 0))    
-        self.connect((self.blocks_float_to_complex_0, 0), (self.osmosdr_sink_0, 0))    
+        self.connect((self.blocks_float_to_complex_0, 0), (self.sdr_sink_0, 0))    
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.audio_sink_0, 0))    
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.wxgui_fftsink2_0, 0))    
         self.connect((self.blocks_multiply_xx_0, 0), (self.low_pass_filter_0, 0))    
         self.connect((self.blocks_null_source_0, 0), (self.blocks_float_to_complex_0, 1))    
         self.connect((self.high_pass_filter_0, 0), (self.rational_resampler_xxx_0, 0))    
         self.connect((self.low_pass_filter_0, 0), (self.blocks_abs_xx_0, 0))    
-        self.connect((self.osmosdr_source_0, 0), (self.blocks_complex_to_float_0, 0))    
-        self.connect((self.osmosdr_source_0, 0), (self.fosphor_wx_sink_c_0, 0))    
         self.connect((self.rational_resampler_xxx_0, 0), (self.blocks_multiply_const_vxx_0, 0))    
+        self.connect((self.sdr_source_0, 0), (self.blocks_complex_to_float_0, 0))    
+        self.connect((self.sdr_source_0, 0), (self.fosphor_wx_sink_c_0, 0))    
 
     def get_volume(self):
         return self.volume
@@ -189,8 +176,8 @@ class non_linear_junction_detector(grc_wxgui.top_block_gui):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.osmosdr_source_0.set_sample_rate(self.samp_rate)
-        self.osmosdr_sink_0.set_sample_rate(self.samp_rate)
+        self.sdr_source_0.set_samp_rate(self.samp_rate)
+        self.sdr_sink_0.set_samp_rate(self.samp_rate)
         self.low_pass_filter_0.set_taps(firdes.low_pass(3, self.samp_rate, 10000, 5000, firdes.WIN_HAMMING, 6.76))
         self.fosphor_wx_sink_c_0.set_frequency_range(999000000, self.samp_rate)
         self.analog_sig_source_x_1.set_sampling_freq(self.samp_rate)
